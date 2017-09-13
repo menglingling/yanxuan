@@ -25,9 +25,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.2rem;
+  padding:0.4rem 0.2rem;
   background: $color-background-dd;
-  border-radius: 10px;
+  border-radius: 5px;
   .icon-search{
     display: block;
     width: .6rem;

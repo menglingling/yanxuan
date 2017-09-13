@@ -23,6 +23,40 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+var appData = require('../server/db.json')
+var apiRoutes = express.Router()
+var apiData = appData.data
+apiRoutes.get('/data', function (req, res) {
+  res.json({
+    data: apiData
+  })
+})
+
+
+apiRoutes.post('/focusList', function (req, res) {
+  res.json({
+    data: apiData.focusList
+  })
+})
+apiRoutes.post('/policyDescList', function (req, res) {
+  res.json({
+    data: apiData.policyDescList
+  })
+})
+apiRoutes.post('/tagList', function (req, res) {
+  if (apiData.tagList.length > 4) {
+    apiData.tagList.length = 4
+  }
+  res.json({
+    data: apiData.tagList
+  })
+})
+
+
+app.use('/api', apiRoutes)
+
+
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -65,6 +99,9 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
+
+
+
 var uri = 'http://localhost:' + port
 
 var _resolve
@@ -90,3 +127,5 @@ module.exports = {
     server.close()
   }
 }
+
+
