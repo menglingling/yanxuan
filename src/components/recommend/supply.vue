@@ -1,5 +1,5 @@
 <template>
-  <div class="supply">
+  <div class="block">
     <div class="title">
       <span class="title-txt">品牌制造商直供</span>
       <i class="icon-more"></i>
@@ -8,7 +8,7 @@
       <li class="item" v-for="(item ,index) in needList">
         <div class="des">
           <div class="name" v-text="item.name"></div>
-          <div class="price">{{item.floorPrice}}元起</div>
+          <div class="price" v-text="item.floorPrice+'元起'"></div>
           <div class="tag" v-if="item.newOnShelf">
             <i class="icon-more"></i>
           </div>
@@ -44,7 +44,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "~assets/scss/variable.scss";
-.supply {
+@import "~assets/scss/mixin.scss";
+.block {
   .title {
     padding: 0.8rem;
     display: flex;
@@ -55,7 +56,7 @@ export default {
       display: block;
       width: .6rem;
       height: .6rem;
-      background: url('../../assets/icons/icon-more.png') no-repeat center center / 100% 100%;
+      background: url('../../assets/icons/icon-more.png') no-repeat center center / contain;
     }
     .title-txt {
       margin-right: 0.1rem;
@@ -63,11 +64,8 @@ export default {
   }
   .list {
     font-size: 0.55rem;
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
-    }
+    position: relative;
+    @include clearfix;
     .item {
       float: left;
       width: 7rem;

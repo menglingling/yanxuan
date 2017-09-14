@@ -11,3 +11,7 @@ html {
   }
 }
 
+.scroll{
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}

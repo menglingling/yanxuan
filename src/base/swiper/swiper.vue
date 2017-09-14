@@ -7,9 +7,8 @@
   </swiper>
 </template>
 <script>
-require('swiper/dist/css/swiper.css')
+require('assets/css/swiper.css')
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
 export default {
   props: {
     options: [Object],
@@ -28,8 +27,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "~assets/scss/variable.scss";
 .swiper-slide {
   width: auto;
   font-size: 0
 }
+
 </style>

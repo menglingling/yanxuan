@@ -32,6 +32,11 @@ apiRoutes.get('/data', function (req, res) {
   })
 })
 
+apiRoutes.post('/headCateList', function (req, res) {
+  res.json({
+    data: apiData.headCateList
+  })
+})
 
 apiRoutes.post('/focusList', function (req, res) {
   res.json({
@@ -44,14 +49,34 @@ apiRoutes.post('/policyDescList', function (req, res) {
   })
 })
 apiRoutes.post('/tagList', function (req, res) {
-  if (apiData.tagList.length > 4) {
-    apiData.tagList.length = 4
-  }
   res.json({
     data: apiData.tagList
   })
 })
 
+apiRoutes.post('/newItemList', function (req, res) {
+  res.json({
+    data: apiData.newItemList
+  })
+})
+
+apiRoutes.post('/popularItemList', function (req, res) {
+  res.json({
+    data: apiData.popularItemList
+  })
+})
+
+apiRoutes.post('/flashSaleIndexVO', function (req, res) {
+  res.json({
+    data: apiData.flashSaleIndexVO
+  })
+})
+
+apiRoutes.post('/cateList', function (req, res) {
+  res.json({
+    data: apiData.cateList
+  })
+})
 
 app.use('/api', apiRoutes)
 

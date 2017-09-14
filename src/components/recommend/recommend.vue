@@ -6,14 +6,14 @@
         <searchBar class="search"></searchBar>
       </div>
       <div class="header-nav">
-        <swiper class="nav" :options="swiperOptions" >
+        <swiper v-if="headCateList" class="nav" :options="swiperOptions" :list="headCateList">
           <template scope="props">
-            <span @click="selectNavItem(props.index)" :class="{ cur: curNavItem==props.index }" v-text="props.item"></span>
+            <span @click="selectNavItem(props.index)" :class="{ cur: curNavItem==props.index }" v-text="props.item.name"></span>
           </template>
         </swiper>
       </div>
     </vHeader>
-    <vMain class="main">
+    <vMain class="main scroll">
       <swiper v-if="focusList" class="banner" :options="swiperOptions1" :list="focusList">
         <template scope="props">
           <img v-if="props.item.picUrl" :src="props.item.picUrl">
@@ -21,21 +21,28 @@
       </swiper>
       <servicePolicy class="policy" v-if="policyDescList" :list="policyDescList"></servicePolicy>
       <supply class="supply" v-if="tagList" :list="tagList"></supply>
+      <newProduct class="newProduct" v-if="newItemList" :list="newItemList"></newProduct>
+      <popular class="popular" v-if="popularItemList" :list="popularItemList"></popular>
+      <flashSale class="flashSale"  v-if="flashSaleIndexVO" :list="flashSaleIndexVO"></flashSale>
+      <cateList :list="cateList"></cateList>
     </vMain>
-    <vFooter class="footer"></vFooter>
   </div>
 </template>
 
 <script>
 import vHeader from 'components/vHeader/vHeader'
 import vMain from 'components/vMain/vMain'
-import vFooter from 'components/vFooter/vFooter'
 import searchBar from 'components/search/searchBar'
 import swiper from 'base/swiper/swiper'
 import servicePolicy from 'components/servicePolicy/servicePolicy'
 import supply from 'components/recommend/supply'
+import newProduct from 'components/recommend/newProduct'
+import popular from 'components/recommend/popular'
+import flashSale from 'components/recommend/flashSale'
+import cateList from 'components/recommend/cateList'
 
-import {getfocusList,getpolicyDescList,getTagList} from 'api/recommend'
+
+import { getheadCateList, getfocusList, getpolicyDescList, getTagList, getnewItemList, getpopularItemList,getflashSaleIndexVO,getcateList } from 'api/recommend'
 var dataOptions = {
   notNextTick: true,
   autoHeight: true,
@@ -55,55 +62,88 @@ export default {
   components: {
     vHeader,
     vMain,
-    vFooter,
     searchBar,
     swiper,
     servicePolicy,
-    supply
+    supply,
+    newProduct,
+    popular,
+    flashSale,
+    cateList
   },
   data() {
     return {
-      
       swiperOptions: dataOptions,
       swiperOptions1: dataOptions1,
-      curNavItem:0,
-      focusList:null,
-      policyDescList:null,
-      tagList:null
+      curNavItem: 0,
+      headCateList: null,
+      focusList: null,
+      policyDescList: null,
+      tagList: null,
+      newItemList: null,
+      popularItemList: null,
+      flashSaleIndexVO:null,
+      cateList:null
     }
   },
   created() {
 
-      setTimeout(() => {
-        this._getfocusList();
-        this._getpolicyDescList();
-        this._getTagList();
+    setTimeout(() => {
+      this._getheadCateList();
+      this._getfocusList();
+      this._getpolicyDescList();
+      this._getTagList();
+      this._getnewItemList();
+      this._getpopularItemList();
+      this._getflashSaleIndexVO();
+      this._getcateList();
+    }, 20)
 
-      }, 20)
-      
   },
   methods: {
-    selectNavItem:function(index){
-        this.curNavItem=index;
+    selectNavItem: function (index) {
+      this.curNavItem = index;
+    },
+    _getheadCateList() {
+      getheadCateList().then((res) => {
+        this.headCateList = res.data;
+      })
     },
     _getfocusList() {
-        getfocusList().then((res) => {
-          console.log(res)
-           this.focusList=res.data;
-        })
-      },
+      getfocusList().then((res) => {
+        this.focusList = res.data;
+      })
+    },
     _getpolicyDescList() {
-        getpolicyDescList().then((res) => {
-          console.log(res)
-           this.policyDescList=res.data;           
-        })
-      },
-       _getTagList() {
-        getTagList().then((res) => {
-          console.log(res)
-           this.tagList=res.data;           
-        })
-      }
+      getpolicyDescList().then((res) => {
+        this.policyDescList = res.data;
+      })
+    },
+    _getTagList() {
+      getTagList().then((res) => {
+        this.tagList = res.data;
+      })
+    },
+    _getnewItemList() {
+      getnewItemList().then((res) => {
+        this.newItemList = res.data;
+      })
+    },
+    _getpopularItemList() {
+      getpopularItemList().then((res) => {
+        this.popularItemList = res.data;
+      })
+    },
+    _getflashSaleIndexVO() {
+      getflashSaleIndexVO().then((res) => {
+        this.flashSaleIndexVO = res.data;
+      })
+    },
+    _getcateList() {
+      getcateList().then((res) => {
+        this.cateList = res.data;
+      })
+    }
   }
 }
 </script>
@@ -115,13 +155,13 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
- 
+
   .header {
-     padding: 0 0.4rem;
+    padding: 0 0.4rem;
     .header-top {
       display: flex;
       align-items: center;
-       padding: 0.2rem 0;
+      padding: 0.2rem 0;
       .logo {
         width: 3rem;
         height: 1rem;
@@ -133,44 +173,55 @@ export default {
     }
     .header-nav {
       .nav {
-        padding:0.4rem;
-        font-size: 0.6rem;
-        
+        padding: 0.4rem;
+
+
         span {
-          padding:0.4rem;
+          padding: 0.4rem;
+          font-size: 0.6rem;
         }
-        .cur{
+        .cur {
           position: relative;
-          &:after{
+          &:after {
             position: absolute;
-            bottom:0;
-            left:0;
-            content:'';
+            bottom: 0;
+            left: 0;
+            content: '';
             width: 100%;
             height: 4px;
-            background: $color-text-cur
+            background: $color-cur
           }
-        }        
+        }
       }
     }
   }
   .main {
     flex: 1;
-     background:$color-background-d; 
+    background: $color-background-d;
     .banner {
       img {
         width: 100%;
         height: 100%;
       }
     }
-    .policy{
-      padding:0.4rem;
-      background:$color-background; 
+    .policy {
+      padding: 0.4rem;
+      background: $color-background;
     }
-    .supply{
+    .supply {
       margin-top: 0.3rem;
-      padding:0 0.4rem;
-      background:$color-background; 
+      padding: 0 0.4rem;
+      background: $color-background;
+    }
+    .newProduct {
+      margin-top: 0.3rem;
+    }
+    .popular {
+      margin-top: 0.3rem;
+    }
+    .flashSale {
+      margin-top: 0.3rem;
+      background: $color-background;
     }
   }
 }
