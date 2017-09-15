@@ -3,8 +3,8 @@
   var docEl = document.documentElement
 
   function setUnitA () {
-    var winWidth = docEl.getBoundingClientRect().width > 1024 ? 1024 : docEl.getBoundingClientRect().width
-    win.rem = winWidth / 15
+    var winWidth = docEl.getBoundingClientRect().width > 1242 ? 1242 : docEl.getBoundingClientRect().width
+    win.rem = winWidth / 12.42
     docEl.style.fontSize = win.rem + 'px'
   }
 

@@ -1,8 +1,8 @@
 <template>
   <div class="block">
     <div class="des">
-      <div class="title">严选限时购</div>
-      <div class="countdown"></div>
+      <div class="title">严选限时购</div>     
+      <countdown :remainTime="needList.remainTime"></countdown>
       <div class="next" v-text="'下一场 '+needList.nextStartTime+' 开始'"></div>
     </div>
     <div class="pic">
@@ -16,10 +16,13 @@
 </template>
 
 <script>
-
+import countdown from 'base/countdown/countdown'
 export default {
+  components: {
+    countdown
+  },
   props: {
-    list: [Object]
+     list: [Object]
   },
   data() {
     return {
@@ -52,12 +55,12 @@ export default {
   .des {
     flex: 1;
     .title {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
       letter-spacing: .16rem;
     }
     .next {
       margin-top: 1rem;
-      font-size: 0.5rem;
+      font-size: 0.4rem;
     }
   }
   .pic {
@@ -72,11 +75,11 @@ export default {
     position: absolute;
     right:1.2rem;
     bottom:1.2rem;   
-    width: 2rem;
-    height: 2rem;
+    width: 1.6rem;
+    height: 1.6rem;
     border-radius: 50%;
     color: #fff;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     background-color: rgba(244,143,24,.95);
     .originPrice{
       text-decoration: line-through

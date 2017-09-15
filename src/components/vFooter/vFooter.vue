@@ -55,7 +55,7 @@ export default {
   background-color: #fafafa;
   padding: 0.2rem;
   display: flex;
-  font-size: 0.45rem;
+  font-size: 0.4rem;
   .nav-item{
    flex: 1;
    @include center;
@@ -63,8 +63,8 @@ export default {
    .nav-item-icon{
      margin-bottom: 0.2rem;
      display: block;
-     width: 0.8rem;
-     height: 0.8rem;
+     width: 0.6rem;
+     height: 0.6rem;
      background-image:  url('../../assets/images/nav.png');
      background-repeat: no-repeat;
      background-size: 100%;

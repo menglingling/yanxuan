@@ -25,26 +25,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "~assets/scss/variable.scss";
+@import "~assets/scss/mixin.scss";
 .service{
- 
   display: flex;
-  font-size: 0.5rem;
+  font-size: .4rem;
   .service-item{
-     display: flex;
-     align-items: center;
-     justify-content: center;
+     @include center;
      flex: 1;
     .icon-service{
     display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.5rem;
+    height: 0.5rem;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 100% 100%;
-    
+    background-size: 100% 100%;    
   }
   .service-txt{
-    margin-left:0.2rem;
+    margin-left:0.15rem;
   }
 
   }

@@ -25,19 +25,19 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:0.4rem 0.2rem;
+  padding:0.3rem 0.2rem;
   background: $color-background-dd;
   border-radius: 5px;
   .icon-search{
     display: block;
-    width: .6rem;
-    height: .6rem;
+    width: .5rem;
+    height: .5rem;
     background: url('../../assets/icons/icon-search.png') no-repeat center center /cover;
   }
   .txt-search{
     margin-left: 0.2rem;
     display: block;
-    font-size: 0.5rem;
+    font-size: 0.45rem;
   }
 }
 </style>

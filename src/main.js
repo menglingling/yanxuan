@@ -6,12 +6,14 @@ import router from './router'
 import VueLazyload from 'vue-lazyload'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
+import fastclick from 'fastclick'
 
 import 'assets/scss/index.scss'
 import 'assets/js/common.js'
 
 Vue.config.productionTip = false
 
+fastclick.attach(document.body)
 
 Vue.use(VueLazyload, {
   // error: 'dist/error.png',

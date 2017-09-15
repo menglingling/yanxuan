@@ -10,7 +10,7 @@
           <div class="name" v-text="item.name"></div>
           <div class="price" v-text="item.floorPrice+'元起'"></div>
           <div class="tag" v-if="item.newOnShelf">
-            <i class="icon-more"></i>
+            <i class="icon-new"></i>
           </div>
         </div>
         <img class="pic" :src="item.picUrl">
@@ -47,15 +47,15 @@ export default {
 @import "~assets/scss/mixin.scss";
 .block {
   .title {
-    padding: 0.8rem;
+    padding: 0.6rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     .icon-more {
       display: block;
-      width: .6rem;
-      height: .6rem;
+      width: .5rem;
+      height: .5rem;
       background: url('../../assets/icons/icon-more.png') no-repeat center center / contain;
     }
     .title-txt {
@@ -63,12 +63,13 @@ export default {
     }
   }
   .list {
-    font-size: 0.55rem;
+    font-size: 0.45rem;
     position: relative;
     @include clearfix;
     .item {
       float: left;
-      width: 7rem;
+      width: 5.8rem;
+      height: 4rem;
       margin-bottom: 0.2rem;
       overflow: hidden;
       position: relative;
@@ -82,11 +83,11 @@ export default {
         }
         .tag {
           margin-top: 0.3rem;
-          .icon-more {
+          .icon-new {
             display: block;
-            width: 1.2rem;
-            height: 0.6rem;
-            background: url('../../assets/icons/icon-new.png') no-repeat center center /100% 100%;
+            width: 1rem;
+            height: 0.5rem;
+            background: url('../../assets/icons/icon-new.png') no-repeat center center /contain;
           }
         }
       }

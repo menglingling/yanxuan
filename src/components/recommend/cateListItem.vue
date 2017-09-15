@@ -38,9 +38,9 @@ export default {
     needData: function () {
       let itemList = this.data.itemList;
       if (Number.isInteger(itemList.length / 2)) {
-        itemList = itemList.slice(0, itemList.length - 1);
-        itemList.push({ 'name': 'more' });
+        itemList = itemList.slice(0, itemList.length - 1);       
       }
+      itemList.push({ 'name': 'more' });
       this.data.itemList = itemList;
       return this.data
     }
@@ -64,7 +64,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
   .list {
     font-size: 0.55rem;
@@ -73,7 +73,7 @@ export default {
 
     .item {
       float: left;
-      width: 6.9rem;
+      width: 5.6rem;
       margin-bottom: 0.6rem;
       overflow: hidden;
       position: relative;
@@ -82,16 +82,16 @@ export default {
         top: 0.3rem;
         left: 0.3rem;
         padding: 0.05rem;
-        width: 0.6rem;
+        width: 0.5rem;
         color: #b4a078;
-        font-size: 0.4rem;
+        font-size: 0.3rem;
         text-align: center;
         border: 1px solid #b4a078;
         line-height: 1.2;
       }
       .pic {
         position: relative;
-        height: 8rem;
+        height: 6.5rem;
         background-color: $color-background-d;
         img {
           width: 100%;
@@ -102,7 +102,7 @@ export default {
           bottom: 0;
           left: 0;
           width: 100%;
-          font-size: 0.5rem;
+          font-size: 0.4rem;
           color: #9F8A60;
           background-color: #F1ECE2;
           @include no-wrap;
@@ -112,13 +112,13 @@ export default {
 
       .name {
         margin-top: 0.3rem;
-        font-size: 0.55rem;
+        font-size: 0.45rem;
         color: $color-text;
         @include no-wrap;
       }
       .retailPrice {
         margin-top: 0.3rem;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
         font-weight: bold;
         color: $color-cur;
       }
@@ -128,10 +128,10 @@ export default {
       margin-left: 0.4rem;
     }
     .more {
-      height: 8rem;
+      height: 6.5rem;
       @include center;
       flex-direction: column;
-      font-size: 0.7rem;
+      font-size: 0.55rem;
       color: $color-text-l;
       background-color: $color-background-d;
       .more-text{
@@ -139,8 +139,8 @@ export default {
       }
       .icon-more {
         display: block;
-        width: 1.5rem;
-        height:1.5rem;
+        width: 1.2rem;
+        height:1.2rem;
         background: url('../../assets/icons/icon-bigger-more.png') no-repeat center center / contain;
       }
     }

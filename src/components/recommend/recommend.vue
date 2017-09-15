@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <vHeader class="header" slot="recommend">
+    <vHeader class="fixed header" slot="recommend">
       <div class="header-top">
         <img class="logo" src="../../assets/logo.png">
         <searchBar class="search"></searchBar>
@@ -13,7 +13,7 @@
         </swiper>
       </div>
     </vHeader>
-    <vMain class="main scroll">
+    <vMain class="main">
       <swiper v-if="focusList" class="banner" :options="swiperOptions1" :list="focusList">
         <template scope="props">
           <img v-if="props.item.picUrl" :src="props.item.picUrl">
@@ -158,13 +158,14 @@ export default {
 
   .header {
     padding: 0 0.4rem;
+    background: $color-background;
     .header-top {
       display: flex;
       align-items: center;
-      padding: 0.2rem 0;
+      padding: 0.3rem 0;
       .logo {
-        width: 3rem;
-        height: 1rem;
+        width: 2rem;
+        height: 0.6rem;
       }
       .search {
         margin-left: 0.4rem;
@@ -172,13 +173,11 @@ export default {
       }
     }
     .header-nav {
-      .nav {
-        padding: 0.4rem;
-
-
+      .nav {        
         span {
-          padding: 0.4rem;
-          font-size: 0.6rem;
+          display: block;
+          padding:0.3rem;
+          font-size: 0.48rem;
         }
         .cur {
           position: relative;
@@ -188,7 +187,7 @@ export default {
             left: 0;
             content: '';
             width: 100%;
-            height: 4px;
+            height: 2px;
             background: $color-cur
           }
         }
@@ -196,6 +195,7 @@ export default {
     }
   }
   .main {
+    margin-top:2.7rem;
     flex: 1;
     background: $color-background-d;
     .banner {
@@ -210,14 +210,16 @@ export default {
     }
     .supply {
       margin-top: 0.3rem;
-      padding: 0 0.4rem;
+      padding: 0 0.3rem;
       background: $color-background;
     }
     .newProduct {
       margin-top: 0.3rem;
+      background: $color-background;
     }
     .popular {
       margin-top: 0.3rem;
+      background: $color-background;
     }
     .flashSale {
       margin-top: 0.3rem;
