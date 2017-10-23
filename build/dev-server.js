@@ -23,58 +23,60 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-var appData = require('../server/db.json')
+var appDataHome = require('../server/home.json')
+var appDataCate = require('../server/cate.json')
 var apiRoutes = express.Router()
-var apiData = appData.data
-apiRoutes.get('/data', function (req, res) {
+
+
+apiRoutes.get('/home/data', function (req, res) {
   res.json({
-    data: apiData
+    data: appDataHome
   })
 })
 
-apiRoutes.post('/headCateList', function (req, res) {
+apiRoutes.post('/home/headCateList', function (req, res) {
   res.json({
-    data: apiData.headCateList
+    data: appDataHome.headCateList
   })
 })
 
-apiRoutes.post('/focusList', function (req, res) {
+apiRoutes.post('/home/focusList', function (req, res) {
   res.json({
-    data: apiData.focusList
+    data: appDataHome.focusList
   })
 })
-apiRoutes.post('/policyDescList', function (req, res) {
+apiRoutes.post('/home/policyDescList', function (req, res) {
   res.json({
-    data: apiData.policyDescList
+    data: appDataHome.policyDescList
   })
 })
-apiRoutes.post('/tagList', function (req, res) {
+apiRoutes.post('/home/tagList', function (req, res) {
   res.json({
-    data: apiData.tagList
-  })
-})
-
-apiRoutes.post('/newItemList', function (req, res) {
-  res.json({
-    data: apiData.newItemList
+    data: appDataHome.tagList
   })
 })
 
-apiRoutes.post('/popularItemList', function (req, res) {
+apiRoutes.post('/home/newItemList', function (req, res) {
   res.json({
-    data: apiData.popularItemList
+    data: appDataHome.newItemList
   })
 })
 
-apiRoutes.post('/flashSaleIndexVO', function (req, res) {
+apiRoutes.post('/home/popularItemList', function (req, res) {
   res.json({
-    data: apiData.flashSaleIndexVO
+    data: appDataHome.popularItemList
   })
 })
 
-apiRoutes.post('/cateList', function (req, res) {
+apiRoutes.post('/home/flashSaleIndexVO', function (req, res) {
   res.json({
-    data: apiData.cateList
+    data: appDataHome.flashSaleIndexVO
+  })
+})
+
+apiRoutes.post('/home/cateList', function (req, res) {
+  res.json({
+    data: appDataHome.cateList
   })
 })
 

@@ -1,8 +1,9 @@
 import axios from 'axios'
 const commonParams = {}
+const prefixUrl = '/api/home'
 
 export function getheadCateList () {
-  const url = '/api/headCateList'
+  const url = prefixUrl + '/headCateList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -11,9 +12,8 @@ export function getheadCateList () {
   })
 }
 
-
 export function getfocusList () {
-  const url = '/api/focusList'
+  const url = prefixUrl + '/focusList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -23,7 +23,7 @@ export function getfocusList () {
 }
 
 export function getpolicyDescList () {
-  const url = '/api/policyDescList'
+  const url = prefixUrl + '/policyDescList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -33,7 +33,7 @@ export function getpolicyDescList () {
 }
 
 export function getTagList () {
-  const url = '/api/tagList'
+  const url = prefixUrl + '/tagList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -43,7 +43,7 @@ export function getTagList () {
 }
 
 export function getnewItemList () {
-  const url = '/api/newItemList'
+  const url = prefixUrl + '/newItemList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -53,7 +53,7 @@ export function getnewItemList () {
 }
 
 export function getpopularItemList () {
-  const url = '/api/popularItemList'
+  const url = prefixUrl + '/popularItemList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -63,7 +63,7 @@ export function getpopularItemList () {
 }
 
 export function getflashSaleIndexVO () {
-  const url = '/api/flashSaleIndexVO'
+  const url = prefixUrl + '/flashSaleIndexVO'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data
@@ -73,7 +73,7 @@ export function getflashSaleIndexVO () {
 }
 
 export function getcateList () {
-  const url = '/api/cateList'
+  const url = prefixUrl + '/cateList'
   const data = Object.assign({}, commonParams, {})
   return axios.post(url, {
     params: data

@@ -1,5 +1,6 @@
 <template>
   <div class="block">
+    <slot name="banner"></slot>
     <ul class="list">
       <li class="item" v-for="(item,index) in list">
         <cateListItem :data="item"></cateListItem>
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-import cateListItem from 'components/recommend/cateListItem'
+import cateListItem from 'components/home/cateListItem'
 export default {
   props: {
     list: [Array]

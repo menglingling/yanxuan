@@ -25,6 +25,13 @@
       <popular class="popular" v-if="popularItemList" :list="popularItemList"></popular>
       <flashSale class="flashSale"  v-if="flashSaleIndexVO" :list="flashSaleIndexVO"></flashSale>
       <cateList :list="cateList"></cateList>
+      <transition name="slide">      
+      <cateList class="headCateListCur" v-if="headCateListCurList" :list="headCateListCurList.subCateList">
+        <div slot="banner">
+             <img class="pic" :src="headCateListCurList.bannerUrl">
+        </div>
+      </cateList>
+      </transition>
     </vMain>
   </div>
 </template>
@@ -35,14 +42,14 @@ import vMain from 'components/vMain/vMain'
 import searchBar from 'components/search/searchBar'
 import swiper from 'base/swiper/swiper'
 import servicePolicy from 'components/servicePolicy/servicePolicy'
-import supply from 'components/recommend/supply'
-import newProduct from 'components/recommend/newProduct'
-import popular from 'components/recommend/popular'
-import flashSale from 'components/recommend/flashSale'
-import cateList from 'components/recommend/cateList'
+import supply from 'components/home/supply'
+import newProduct from 'components/home/newProduct'
+import popular from 'components/home/popular'
+import flashSale from 'components/home/flashSale'
+import cateList from 'components/home/cateList'
 
 
-import { getheadCateList, getfocusList, getpolicyDescList, getTagList, getnewItemList, getpopularItemList,getflashSaleIndexVO,getcateList } from 'api/recommend'
+import { getheadCateList, getfocusList, getpolicyDescList, getTagList, getnewItemList, getpopularItemList,getflashSaleIndexVO,getcateList } from 'api/home'
 var dataOptions = {
   notNextTick: true,
   autoHeight: true,
@@ -83,7 +90,8 @@ export default {
       newItemList: null,
       popularItemList: null,
       flashSaleIndexVO:null,
-      cateList:null
+      cateList:null,
+      headCateListCurList:null,
     }
   },
   created() {
@@ -103,9 +111,16 @@ export default {
   methods: {
     selectNavItem: function (index) {
       this.curNavItem = index;
+      if(index!=0){
+         this.headCateListCurList=this.headCateList[index]
+      }else{
+          this.headCateListCurList=null;
+      }
+
     },
     _getheadCateList() {
       getheadCateList().then((res) => {
+        res.data.unshift({name:'推荐'});
         this.headCateList = res.data;
       })
     },
@@ -195,6 +210,7 @@ export default {
     }
   }
   .main {
+    position: relative;
     margin-top:2.7rem;
     flex: 1;
     background: $color-background-d;
@@ -225,6 +241,24 @@ export default {
       margin-top: 0.3rem;
       background: $color-background;
     }
+    .headCateListCur{
+      position:absolute;
+      top:0;
+      left:0;
+      z-index: 1;
+      .pic{
+        width: 100%;
+      }
+    }
   }
+}
+
+  .slide-enter-active, .slide-leave-active{
+    transition: all 0.3s
+  }
+
+
+  .slide-enter, .slide-leave-to{
+    transform: translate3d(100%, 0, 0)
 }
 </style>

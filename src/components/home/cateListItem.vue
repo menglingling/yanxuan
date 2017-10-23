@@ -2,6 +2,7 @@
   <div class="block">
     <div class="title">
       <span class="title-txt" v-text="needData.name"></span>
+      <span class="small-title-txt" v-text="needData.frontName"></span>
     </div>
     <ul class="list">
       <li class="item" v-for="(item ,index) in needData.itemList">
@@ -66,14 +67,16 @@ export default {
     align-items: center;
     font-size: 0.5rem;
   }
+  .small-title-txt{
+    font-size: 0.4rem;
+  }
   .list {
     font-size: 0.55rem;
     position: relative;
     @include clearfix;
-
     .item {
       float: left;
-      width: 5.6rem;
+      width: 49%;
       margin-bottom: 0.6rem;
       overflow: hidden;
       position: relative;
@@ -125,7 +128,7 @@ export default {
     }
 
     .item:nth-child(2n) {
-      margin-left: 0.4rem;
+      float: right;
     }
     .more {
       height: 6.5rem;
